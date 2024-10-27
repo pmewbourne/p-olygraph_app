@@ -8,6 +8,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import React from 'react';
 import { FileUploadButton } from '../components/FileUploadButton';
 import { VideoRecorder } from '../components/VideoRecorder';
+import { Button } from '@/components/ui/button'
 
 export default async function Index() {
 
@@ -43,9 +44,11 @@ export default async function Index() {
       </div>
 
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Video Upload and Recorder</h1>
-          <FileUploadButton />
-          <VideoRecorder />
+        <div className="flex space-x-4">
+          <h1 className="text-2xl font-bold mb-4">Video Upload and Recorder</h1>
+            <FileUploadButton />
+            <VideoRecorder />
+        </div>
       </div>
 
       <footer className="w-full justify-center border-t border-t-foreground/10 p-8 text-center text-xs">

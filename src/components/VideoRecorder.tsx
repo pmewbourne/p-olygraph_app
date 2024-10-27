@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef } from 'react';
+import { Button } from './ui/button';
 
 export const VideoRecorder = () => {
   const [recording, setRecording] = useState(false);
@@ -32,9 +33,10 @@ export const VideoRecorder = () => {
 
   return (
     <div>
-      <button onClick={recording ? stopRecording : startRecording} className="btn-record">
+
+      <Button onClick={recording ? stopRecording : startRecording} className="btn-record">
         {recording ? 'Stop Recording' : 'Record Video'}
-      </button>
+      </Button>
 
       {videoURL && <video src={videoURL} controls className="w-full mt-4" />}
     </div>
