@@ -8,6 +8,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import React from 'react'
 import { FileUploadButton } from '../components/FileUploadButton'
 import { VideoRecorder } from '../components/VideoRecorder'
+import { VideoUploadAndRecorder } from '@/components/videoplayer'
 
 export default async function Index() {
   const cookieStore = cookies()
@@ -42,12 +43,19 @@ export default async function Index() {
 
       {/* Video Upload and Recorder Section */}
       <div className="container mx-auto p-4">
+        <VideoUploadAndRecorder />
+      </div>
+      {/* <div className="container mx-auto p-4">
         <h1 className="mb-4 text-2xl font-bold">Video Upload and Recorder</h1>
         <div className="mb-4 flex space-x-4">
-          <FileUploadButton />
-          <VideoRecorder />
+          <FileUploadButton setVideoURL={function (url: string): void {
+            throw new Error('Function not implemented.')
+          } } />
+          <VideoRecorder setVideoURL={function (url: string): void {
+            throw new Error('Function not implemented.')
+          } } />
         </div>
-      </div>
+      </div> */}
 
       <footer className="w-full justify-center border-t border-t-foreground/10 p-8 text-center text-xs">
         <p className="mb-6">
