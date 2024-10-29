@@ -2,9 +2,13 @@
 import { useState, useRef } from 'react'
 import { Button } from './ui/button'
 
-export const VideoRecorder = () => {
+export const VideoRecorder = ({
+  setVideoURL: updateParentVideoURL,
+}: {
+  setVideoURL: (url: string) => void
+}) => {
   const [recording, setRecording] = useState(false)
-  const [videoURL, setVideoURL] = useState<string | null>(null)
+  const [localVideoURL, setLocalVideoURL] = useState<string | null>(null)
   const mediaRecorder = useRef<MediaRecorder | null>(null)
   const recordedChunks = useRef<Blob[]>([])
   const videoRef = useRef<HTMLVideoElement | null>(null)
@@ -30,10 +34,10 @@ export const VideoRecorder = () => {
 
     mediaRecorder.current.onstop = () => {
       const blob = new Blob(recordedChunks.current, { type: 'video/mp4' })
-      setVideoURL(URL.createObjectURL(blob))
+      const url = URL.createObjectURL(blob)
+      setLocalVideoURL(url) // Set the local URL for playback
+      updateParentVideoURL(url) // Update the parent component's state
       recordedChunks.current = []
-      // Stop the stream when recording ends
-      stream.getTracks().forEach((track) => track.stop())
     }
 
     mediaRecorder.current.start()
@@ -67,9 +71,9 @@ export const VideoRecorder = () => {
       </div>
 
       {/* Playback of the recorded video */}
-      {videoURL && !recording && (
-        <video src={videoURL} controls className="mt-4 w-full" />
-      )}
+      {/* {localVideoURL && !recording && (
+        <video src={localVideoURL} controls className="mt-4 w-full" />
+      )} */}
     </div>
   )
 }
