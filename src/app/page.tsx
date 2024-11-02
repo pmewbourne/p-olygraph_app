@@ -4,11 +4,12 @@ import Header from '@/components/Header'
 import { cookies } from 'next/headers'
 import { createServerClient } from '@/utils/supabase'
 import ThemeToggle from '@/components/ThemeToggle'
-import React from 'react'
+import React, { useState } from 'react'
 import { FileUploadButton } from '../components/FileUploadButton'
 import { VideoRecorder } from '../components/VideoRecorder'
 import { VideoUploadAndRecorder } from '@/components/Videoplayer'
 import AuthButton from '@/components/AuthButton'
+import AppSidebar from '@/components/ui/AppSidebar'
 
 export default async function Index() {
   const cookieStore = cookies()
